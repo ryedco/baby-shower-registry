@@ -653,7 +653,7 @@
           <div class="card-detail">${item.detail}</div>
           ${item.link ? `<a class="card-link" href="${item.link}" target="_blank" rel="noopener">View in store &rarr;</a>` : ""}
           ${isClaimed
-            ? `<button class="btn btn-claimed">Claimed</button><div class="claimed-by">Reserved by ${claim}</div>`
+            ? `<button class="btn btn-claimed">Claimed</button>`
             : `<button class="btn btn-claim" onclick="openModal(${item.id})">I'll Get This!</button>`
           }
         </div>
