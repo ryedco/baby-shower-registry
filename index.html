@@ -567,9 +567,19 @@
   const registryItems = [
     {
       id: 1,
-      name: "Diapers (Size 1 & 2)",
+      name: "Diapers (Size 1)",
       detail: "You can never have too many! Any brand works.",
       category: "essentials",
+      maxClaims: 2,
+      img: "https://healthybaby.com/cdn/shop/files/Subscription-PDP-Carousel-3.jpg?v=1769546955",
+      link: "https://healthybaby.com/products/our-diaper?variant=40732779020337"
+    },
+    {
+      id: 2,
+      name: "Diapers (Size 2)",
+      detail: "You can never have too many! Any brand works.",
+      category: "essentials",
+      maxClaims: 2,
       img: "https://healthybaby.com/cdn/shop/files/Subscription-PDP-Carousel-3.jpg?v=1769546955",
       link: "https://healthybaby.com/products/our-diaper?variant=40732779020337"
     },
@@ -640,11 +650,24 @@
       : registryItems.filter(i => i.category === activeFilter);
 
     filtered.forEach(item => {
-      const claim = claims[item.id];
-      const isClaimed = !!claim;
+      const max = item.maxClaims || 1;
+      const claimData = claims[item.id];
+      const claimList = Array.isArray(claimData) ? claimData : (claimData ? [claimData] : []);
+      const claimCount = claimList.length;
+      const isFull = claimCount >= max;
 
       const card = document.createElement("div");
-      card.className = "card" + (isClaimed ? " claimed" : "");
+      card.className = "card" + (isFull ? " claimed" : "");
+
+      let btnHtml;
+      if (isFull) {
+        btnHtml = `<button class="btn btn-claimed">Claimed</button>`;
+      } else if (max > 1 && claimCount > 0) {
+        btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">${claimCount} of ${max} claimed — I'll Get This!</button>`;
+      } else {
+        btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">I'll Get This!</button>`;
+      }
+
       card.innerHTML = `
         <div class="card-img">${item.img ? `<img src="${item.img}" alt="${item.name}" loading="lazy">` : (item.emoji || '')}</div>
         <div class="card-body">
@@ -652,10 +675,7 @@
           <div class="card-title">${item.name}</div>
           <div class="card-detail">${item.detail}</div>
           ${item.link ? `<a class="card-link" href="${item.link}" target="_blank" rel="noopener">View in store &rarr;</a>` : ""}
-          ${isClaimed
-            ? `<button class="btn btn-claimed">Claimed</button>`
-            : `<button class="btn btn-claim" onclick="openModal(${item.id})">I'll Get This!</button>`
-          }
+          ${btnHtml}
         </div>
       `;
       grid.appendChild(card);
@@ -665,8 +685,14 @@
   }
 
   function updateProgress() {
-    const total = registryItems.length;
-    const claimed = Object.keys(claims).length;
+    let total = 0, claimed = 0;
+    registryItems.forEach(item => {
+      const max = item.maxClaims || 1;
+      total += max;
+      const claimData = claims[item.id];
+      const claimList = Array.isArray(claimData) ? claimData : (claimData ? [claimData] : []);
+      claimed += Math.min(claimList.length, max);
+    });
     document.getElementById("progressText").textContent = `${claimed} of ${total} items claimed`;
     document.getElementById("progressFill").style.width = `${(claimed / total) * 100}%`;
   }
@@ -707,7 +733,14 @@
       return;
     }
     const item = registryItems.find(i => i.id === currentClaimId);
-    claims[currentClaimId] = name;
+    const max = item.maxClaims || 1;
+    if (max > 1) {
+      const existing = Array.isArray(claims[currentClaimId]) ? claims[currentClaimId] : (claims[currentClaimId] ? [claims[currentClaimId]] : []);
+      existing.push(name);
+      claims[currentClaimId] = existing;
+    } else {
+      claims[currentClaimId] = name;
+    }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(claims));
     closeModal();
     render();
