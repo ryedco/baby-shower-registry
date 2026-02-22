@@ -619,6 +619,10 @@
   </div>
 </div>
 
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+
 <script>
   // =====================================================================
   //  REGISTRY DATA — Edit this array to customize your registry!
@@ -766,12 +770,31 @@
   ];
 
   // =====================================================================
-  //  STATE
+  //  FIREBASE + STATE
   // =====================================================================
+  firebase.initializeApp({
+    apiKey: "AIzaSyD8coAf5-gGXdJyCQZIemYMJd0SLV4bR1s",
+    authDomain: "baby-registry-7b266.firebaseapp.com",
+    databaseURL: "https://baby-registry-7b266-default-rtdb.firebaseio.com",
+    projectId: "baby-registry-7b266",
+    storageBucket: "baby-registry-7b266.firebasestorage.app",
+    messagingSenderId: "359670051512",
+    appId: "1:359670051512:web:69ff5b38dc902495c07a4d"
+  });
+  const db = firebase.database();
+  const claimsRef = db.ref("claims");
+
   const STORAGE_KEY = "babyshower_claims";
   let claims = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
   let currentClaimId = null;
   let activeFilter = "all";
+
+  // Real-time listener — syncs claims across all devices
+  claimsRef.on("value", snapshot => {
+    claims = snapshot.val() || {};
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(claims));
+    render();
+  });
 
   // Admin mode
   if (location.search.includes("admin")) {
@@ -882,9 +905,8 @@
     } else {
       claims[currentClaimId] = name;
     }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(claims));
+    claimsRef.set(claims);
     closeModal();
-    render();
 
     // Show success modal with shipping address
     showSuccessModal(item);
@@ -949,6 +971,7 @@
   function resetAllClaims() {
     if (confirm("Reset all claims? This cannot be undone.")) {
       claims = {};
+      claimsRef.set(null);
       localStorage.removeItem(STORAGE_KEY);
       render();
     }
