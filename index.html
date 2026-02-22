@@ -854,6 +854,7 @@
           <div class="card-title">${item.name}</div>
           <div class="card-detail">${item.detail}</div>
           ${item.price ? `<div class="card-price">${item.price}</div>` : ""}
+          ${item.link ? `<a class="card-link" href="${item.link}" target="_blank" rel="noopener">View in store &rarr;</a>` : ""}
           ${btnHtml}
         </div>
       `;
