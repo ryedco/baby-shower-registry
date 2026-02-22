@@ -706,10 +706,23 @@
       document.getElementById("claimName").style.borderColor = "#e74c3c";
       return;
     }
+    const item = registryItems.find(i => i.id === currentClaimId);
     claims[currentClaimId] = name;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(claims));
     closeModal();
     render();
+
+    // Send email notification
+    fetch("https://formsubmit.co/ajax/rycole12@gmail.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        _subject: "Baby Registry: " + item.name + " was claimed!",
+        item: item.name,
+        "claimed by": name,
+        _template: "table"
+      })
+    }).catch(() => {});
   }
 
   // Close modal on overlay click
