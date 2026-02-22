@@ -529,7 +529,7 @@
   <p class="names">Peixin & Ryan</p>
   <h1>Baby Shower</h1>
   <p class="subtitle">for Little Peanut</p>
-  <p class="date">March 15, 2026</p>
+  <p class="date">April 5, 2026</p>
 
   <!-- Cute horizontal peanut SVG -->
   <div class="peanut-img">
@@ -567,7 +567,7 @@
 
 <div class="message">
   <h2>Thank you for celebrating with us!</h2>
-  <p>We're so grateful for your love and support. If you'd like to gift something, here are some things we'd love for our little one. No pressure at all — your presence is the best present.</p>
+  <p>We're so grateful for your love and support. If you'd like to gift something, here are some things we'd love for our little one. Just hit "Claim & Buy" to reserve your gift — you'll get our shipping address and a link to purchase. You're also welcome to bring gifts to the shower! No pressure at all — your presence is the best present.</p>
 </div>
 
 <div class="filters">
@@ -803,9 +803,9 @@
       if (isFull) {
         btnHtml = `<button class="btn btn-claimed">Claimed</button>`;
       } else if (max > 1 && claimCount > 0) {
-        btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">${claimCount} of ${max} claimed — I'll Get This!</button>`;
+        btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">${claimCount} of ${max} claimed — Claim & Buy</button>`;
       } else {
-        btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">I'll Get This!</button>`;
+        btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">Claim & Buy</button>`;
       }
 
       card.innerHTML = `
@@ -814,7 +814,6 @@
           <div class="card-category">${item.category}</div>
           <div class="card-title">${item.name}</div>
           <div class="card-detail">${item.detail}</div>
-          ${item.link ? `<a class="card-link" href="${item.link}" target="_blank" rel="noopener">View in store &rarr;</a>` : ""}
           ${btnHtml}
         </div>
       `;
