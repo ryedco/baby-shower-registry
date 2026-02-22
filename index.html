@@ -595,7 +595,7 @@
       detail: "Glass bottles, 5oz, 4-pack.",
       category: "essentials",
       img: "https://lansinoh.com/cdn/shop/files/5oz_4_ct_grande.png?v=1769541985",
-      link: "https://lansinoh.com/products/glass-feeding-baby-5oz?variant=51956458848626"
+      link: "https://www.amazon.com/dp/B0F4T44CY3"
     },
     {
       id: 5,
@@ -670,6 +670,32 @@
       img: "https://frida.com/cdn/shop/files/FM_Postpartum_Underwear_thumbnail_Boyshorts_1_2.jpg?v=1730731309",
       link: "https://www.amazon.com/dp/B07THS54DF"
     },
+    {
+      id: 28,
+      name: "Kudos Skin-Loving Baby Wipes",
+      detail: "Plastic-free, unscented, 60ct. Grab 2 packs!",
+      category: "essentials",
+      maxClaims: 2,
+      img: "https://mykudos.com/cdn/shop/files/RevKudos_Wipes_Updated_2026_c722792e-40d1-4e25-be57-3607478f6d7c.png?v=1769190299",
+      link: "https://www.amazon.com/dp/B0GMDZ8N6K"
+    },
+    {
+      id: 29,
+      name: "Keekaroo Peanut Changer",
+      detail: "Wipeable diaper changing pad — no covers needed. Made in USA.",
+      category: "essentials",
+      img: "https://www.keekaroo.com/media/catalog/product/cache/f8aaf5ce41bbfeeb5322cbd1c3f019bc/k/r/kr_grey_with_baby.png",
+      link: "https://www.amazon.com/dp/B00KSW970Y"
+    },
+    {
+      id: 99,
+      name: "Tesla Cybertruck",
+      detail: "For the little one's first commute. Every baby needs one.",
+      category: "gear",
+      claimed: true,
+      img: "https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/Cybertruck-Main-Hero-Desktop-LHD",
+      link: "https://www.tesla.com/cybertruck/design"
+    },
   ];
 
   // =====================================================================
@@ -701,7 +727,7 @@
       const claimData = claims[item.id];
       const claimList = Array.isArray(claimData) ? claimData : (claimData ? [claimData] : []);
       const claimCount = claimList.length;
-      const isFull = claimCount >= max;
+      const isFull = item.claimed || claimCount >= max;
 
       const card = document.createElement("div");
       card.className = "card" + (isFull ? " claimed" : "");
@@ -734,6 +760,7 @@
   function updateProgress() {
     let total = 0, claimed = 0;
     registryItems.forEach(item => {
+      if (item.claimed) { total++; claimed++; return; }
       const max = item.maxClaims || 1;
       total += max;
       const claimData = claims[item.id];
