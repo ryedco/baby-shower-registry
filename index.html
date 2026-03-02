@@ -766,6 +766,96 @@
       link: "https://www.amazon.com/dp/B07FK7BG98"
     },
     {
+      id: 33,
+      name: "Lansinoh Anti-Colic Baby Bottles for Breastfeeding",
+      detail: "Anti-colic design to reduce air intake. Great for breastfed babies.",
+      category: "essentials",
+      price: "$27.99",
+      img: "https://m.media-amazon.com/images/I/712P01egbTL._SL1500_.jpg",
+      link: "https://www.amazon.com/dp/B0FLZNBGH9"
+    },
+    {
+      id: 34,
+      name: "2-Pack Organic Bassinet Sheets",
+      detail: "Soft organic cotton fitted sheets for bassinet mattress.",
+      category: "essentials",
+      price: "$16.96",
+      img: "https://m.media-amazon.com/images/I/81XuaRR2v-L._AC_SL1500_.jpg",
+      link: "https://www.amazon.com/dp/B0CV9MGKKR"
+    },
+    {
+      id: 35,
+      name: "Coyuchi Unisex Organic Waffle Robe",
+      detail: "Long bathrobe, 100% organic cotton, undyed. Size XS-S.",
+      category: "for mom",
+      price: "$98",
+      img: "https://m.media-amazon.com/images/I/51rE2aCgoNL._AC_SL1500_.jpg",
+      link: "https://www.amazon.com/dp/B0CYT3FZ3Y"
+    },
+    {
+      id: 36,
+      name: "BlueSnail Quilted Waterproof Changing Pad Liners",
+      detail: "Thicker quilted waterproof liners for changing pad protection.",
+      category: "essentials",
+      price: "$15.15",
+      img: "https://m.media-amazon.com/images/I/51tWMT3Sr4L._SL1200_.jpg",
+      link: "https://www.amazon.com/dp/B075ZMCBLG"
+    },
+    {
+      id: 37,
+      name: "Dr. Noze Best NozeBot Electric Baby Nasal Aspirator",
+      detail: "Hospital-grade suction nasal aspirator for congested babies.",
+      category: "essentials",
+      price: "$119.97",
+      img: "https://m.media-amazon.com/images/I/71hu6pLRrlL._AC_SL1500_.jpg",
+      link: "https://www.amazon.com/dp/B08G6SZ2LT"
+    },
+    {
+      id: 38,
+      name: "Dr. Noze Best Newborn Nozepiece",
+      detail: "Newborn-sized tip accessory for the NozeBot aspirator.",
+      category: "essentials",
+      price: "$9.97",
+      img: "https://m.media-amazon.com/images/I/61d78J+M2BL._AC_SL1500_.jpg",
+      link: "https://www.amazon.com/dp/B0CV62RGY2"
+    },
+    {
+      id: 39,
+      name: "Bibs Pacifiers Color Collection",
+      detail: "Natural rubber pacifiers in soft colors. BPA-free.",
+      category: "essentials",
+      price: "$15.95",
+      img: "https://m.media-amazon.com/images/I/71LPnU4os5L._AC_SX569_.jpg",
+      link: "https://www.amazon.com/dp/B09SFKYQ24"
+    },
+    {
+      id: 40,
+      name: "Love to Dream Swaddle UP",
+      detail: "Arms-up swaddle for self-soothing. Ideal for newborns.",
+      category: "essentials",
+      price: "$34.95",
+      img: "https://m.media-amazon.com/images/I/713MTuxkKFL._SL1500_.jpg",
+      link: "https://www.amazon.com/dp/B0FNQQ4WF4"
+    },
+    {
+      id: 41,
+      name: "Love to Dream Swaddle UP Cream",
+      detail: "Arms-up swaddle in cream. For self-soothing newborns.",
+      category: "essentials",
+      price: "$37.95",
+      img: "https://m.media-amazon.com/images/I/41RCKrzKpAL._SL1228_.jpg",
+      link: "https://www.amazon.com/dp/B0088HVGHS"
+    },
+    {
+      id: 32,
+      name: "Pro Goleem Baby Bassinet Mattress Pad",
+      detail: "30\"x18\" bassinet mattress pad with firm side for safe sleep.",
+      category: "essentials",
+      price: "$56.99",
+      img: "https://m.media-amazon.com/images/I/819VmI8GRWL._SL1500_.jpg",
+      link: "https://www.amazon.com/dp/B0DRJ4MFZ1"
+    },
+    {
       id: 31,
       name: "Amazon Gift Card ($50)",
       detail: "For anything we still need! We'll put it to good use.",
@@ -842,8 +932,10 @@
 
       let btnHtml;
       if (isFull) {
-        btnHtml = `<button class="btn btn-claimed">Claimed</button>`;
-      } else if (max > 1 && claimCount > 0) {
+        btnHtml = max > 1
+          ? `<button class="btn btn-claimed">${max} of ${max} claimed</button>`
+          : `<button class="btn btn-claimed">Claimed</button>`;
+      } else if (max > 1) {
         btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">${claimCount} of ${max} claimed — Claim & Buy</button>`;
       } else {
         btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">Claim & Buy</button>`;
