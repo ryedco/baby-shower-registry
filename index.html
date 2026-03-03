@@ -3,1108 +3,421 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Peixin & Ryan's Baby Registry</title>
+  <title>Peanut - Product Launch</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     :root {
-      --sage: #8fa88a;
-      --sage-light: #3d4d3a;
-      --sage-dark: #a3c296;
       --cream: #2a2520;
-      --warm: #332e28;
-      --warm-mid: #3a342d;
-      --blush: #4a3835;
-      --blush-light: #3d3230;
       --text: #e8e2da;
       --text-light: #b0a89e;
+      --sage: #8fa88a;
+      --sage-dark: #a3c296;
+      --blush: #c47070;
       --accent: #d4b88a;
-      --accent-light: #e8d5b8;
-      --claimed: #3a3530;
-      --card-bg: #352f2a;
-      --shadow: 0 2px 16px rgba(0,0,0,0.25);
-      --shadow-hover: 0 6px 24px rgba(0,0,0,0.35);
-      --radius: 14px;
     }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--cream);
-      background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(100,130,90,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(180,120,100,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 90%, rgba(160,130,80,0.05) 0%, transparent 50%);
-      background-attachment: fixed;
+      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(160deg, #1a1715 0%, #2a2520 40%, #332e28 100%);
       color: var(--text);
-      line-height: 1.6;
       min-height: 100vh;
-    }
-
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 70px 20px 55px;
-      background:
-        linear-gradient(160deg, #3a4536 0%, #3a342d 40%, #4a3835 75%, #332e28 100%);
-      position: relative;
-      overflow: hidden;
-      border-bottom: 2px solid rgba(143,168,138,0.2);
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background:
-        radial-gradient(circle at 25% 40%, rgba(143,168,138,0.15) 0%, transparent 45%),
-        radial-gradient(circle at 75% 60%, rgba(180,120,100,0.1) 0%, transparent 40%);
-      pointer-events: none;
-    }
-    .hero .names {
-      font-size: 1.4rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      margin-bottom: 2px;
-      position: relative;
-      z-index: 1;
-    }
-    .hero h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 4rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-      position: relative;
-      z-index: 1;
-      line-height: 1.1;
-    }
-    .hero .subtitle {
-      font-size: 1.15rem;
-      color: var(--text-light);
-      font-weight: 400;
-      margin-bottom: 6px;
-      position: relative;
-      z-index: 1;
-    }
-    .hero .date {
-      font-size: 1rem;
-      color: var(--sage-dark);
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
-    .hero .peanut-img {
-      position: relative;
-      z-index: 1;
-      margin: 18px auto 0;
-    }
-
-    /* HAND-DRAWN HEARTS */
-    .hearts-left, .hearts-right {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 120px;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .hearts-left { left: 10px; }
-    .hearts-right { right: 10px; }
-    .hearts-left svg, .hearts-right svg {
-      position: absolute;
-    }
-
-    @media (max-width: 768px) {
-      .hearts-left, .hearts-right { width: 60px; }
-      .hearts-left svg, .hearts-right svg { transform: scale(0.6); }
-    }
-    @media (max-width: 500px) {
-      .hearts-left, .hearts-right { display: none; }
-    }
-
-    /* NAV FILTERS */
-    .filters {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      padding: 30px 20px 10px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .filter-btn {
-      padding: 8px 20px;
-      border: 1.5px solid rgba(143,168,138,0.3);
-      border-radius: 50px;
-      background: var(--card-bg);
-      color: var(--text);
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .filter-btn:hover { background: rgba(143,168,138,0.15); }
-    .filter-btn.active {
-      background: var(--sage);
-      color: #fff;
-      border-color: var(--sage);
-    }
-
-    /* PROGRESS */
-    .progress-section {
-      max-width: 500px;
-      margin: 20px auto 10px;
-      padding: 0 20px;
-      text-align: center;
-    }
-    .progress-bar-bg {
-      height: 8px;
-      background: var(--warm-mid);
-      border-radius: 50px;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-    .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--sage) 0%, var(--sage-dark) 100%);
-      border-radius: 50px;
-      transition: width 0.4s ease;
-    }
-    .progress-text {
-      font-size: 0.85rem;
-      color: var(--text-light);
-    }
-
-    /* GRID */
-    .registry {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
-      max-width: 1100px;
-      margin: 24px auto 60px;
-      padding: 0 24px;
-    }
-
-    /* CARD */
-    .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s;
-      display: flex;
-      flex-direction: column;
-      border: 1px solid rgba(143,168,138,0.12);
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-    }
-    .card.claimed { opacity: 0.55; }
-    .card-img {
-      width: 100%;
-      height: 200px;
-      object-fit: contain;
-      background: #f5f0ea;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3.8rem;
-      padding: 16px;
-    }
-    .card-img img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-    .card-body {
-      padding: 20px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .card-category {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--sage-dark);
-      font-weight: 600;
-      margin-bottom: 6px;
-      background: rgba(143,168,138,0.15);
-      display: inline-block;
-      padding: 2px 10px;
-      border-radius: 50px;
-      align-self: flex-start;
-    }
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-      margin-top: 4px;
-    }
-    .card-detail {
-      font-size: 0.88rem;
-      color: var(--text);
-      margin-bottom: 12px;
-      flex: 1;
-    }
-    .card-price {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 14px;
-    }
-    .card-link {
-      display: inline-block;
-      margin-bottom: 12px;
-      font-size: 0.85rem;
-      color: var(--sage-dark);
-      text-decoration: underline;
-    }
-    .card-link:hover { color: var(--text); }
-
-    .btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-claim {
-      background: linear-gradient(135deg, #7a9a6e 0%, #5e8050 100%);
-      color: #fff;
-      box-shadow: 0 2px 10px rgba(90,128,80,0.35);
-    }
-    .btn-claim:hover {
-      background: linear-gradient(135deg, #8aaa7e 0%, #6e9060 100%);
-      box-shadow: 0 3px 14px rgba(90,128,80,0.45);
-    }
-    .btn-claimed {
-      background: var(--claimed);
-      color: var(--text-light);
-      cursor: default;
-    }
-    .claimed-by {
-      text-align: center;
-      font-size: 0.82rem;
-      color: var(--text-light);
-      margin-top: 8px;
-      font-style: italic;
+      overflow-x: hidden;
+      position: relative;
     }
 
-    /* MODAL */
-    .modal-overlay {
-      display: none;
+    /* Animated background gradient */
+    body::before {
+      content: '';
       position: fixed;
       inset: 0;
-      background: rgba(15,12,10,0.55);
-      backdrop-filter: blur(6px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .modal-overlay.active { display: flex; }
-    .modal {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 32px;
-      max-width: 400px;
-      width: 100%;
-      box-shadow: 0 12px 50px rgba(0,0,0,0.4);
-      border: 1px solid rgba(143,168,138,0.15);
-    }
-    .modal h2 {
-      font-size: 1.3rem;
-      margin-bottom: 4px;
-    }
-    .modal p {
-      font-size: 0.9rem;
-      color: var(--text-light);
-      margin-bottom: 20px;
-    }
-    .modal label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .modal input {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1.5px solid rgba(143,168,138,0.25);
-      border-radius: 8px;
-      font-size: 1rem;
-      margin-bottom: 20px;
-      outline: none;
-      transition: border 0.2s;
-      background: rgba(255,255,255,0.06);
-      color: var(--text);
-    }
-    .modal input:focus { border-color: var(--sage); }
-    .modal-btns {
-      display: flex;
-      gap: 10px;
-    }
-    .modal-btns .btn { flex: 1; }
-    .btn-cancel {
-      background: var(--warm-mid);
-      color: var(--text);
-    }
-    .btn-cancel:hover { background: var(--claimed); }
-
-    /* SUCCESS MODAL */
-    .address-box {
-      background: rgba(255,255,255,0.06);
-      border: 1.5px solid rgba(143,168,138,0.25);
-      border-radius: 10px;
-      padding: 16px;
-      margin-top: 16px;
-      text-align: center;
-    }
-    .address-box label {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-light);
-      margin-bottom: 8px;
-    }
-    .address-text {
-      font-size: 1.05rem;
-      font-weight: 600;
-      line-height: 1.5;
-      color: var(--text);
-      margin: 8px 0 14px;
-    }
-    .btn-copy {
-      background: var(--warm-mid);
-      color: var(--text);
-      border: 1.5px solid rgba(143,168,138,0.3);
-      padding: 8px 20px;
-      border-radius: 8px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn-copy:hover { background: rgba(143,168,138,0.2); }
-    .btn-copy.copied {
-      background: rgba(143,168,138,0.25);
-      border-color: var(--sage);
-      color: var(--sage-dark);
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(143,168,138,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 30%, rgba(196,112,112,0.12) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 80%, rgba(212,184,138,0.1) 0%, transparent 50%);
+      animation: bgShift 15s ease-in-out infinite;
+      pointer-events: none;
     }
 
-    /* MESSAGE */
-    .message {
-      max-width: 650px;
-      margin: 0 auto;
-      padding: 36px 32px;
+    @keyframes bgShift {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+
+    .container {
+      max-width: 900px;
+      width: 90%;
       text-align: center;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-top: -20px;
       position: relative;
-      z-index: 2;
-      border: 1px solid rgba(143,168,138,0.1);
+      z-index: 10;
+      padding: 40px 20px;
     }
-    .message h2 {
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin-bottom: 8px;
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      opacity: 0;
+      animation: float 8s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg) scale(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+        transform: translateY(90vh) rotate(45deg) scale(1);
+      }
+      90% {
+        opacity: 0.8;
+        transform: translateY(-10vh) rotate(360deg) scale(1);
+      }
+      100% {
+        transform: translateY(-20vh) rotate(405deg) scale(0);
+        opacity: 0;
+      }
+    }
+
+    .heart:nth-child(1) { left: 10%; animation-delay: 0s; color: #c47070; }
+    .heart:nth-child(2) { left: 25%; animation-delay: 2s; color: #d08080; font-size: 18px; }
+    .heart:nth-child(3) { left: 40%; animation-delay: 4s; color: #b85555; font-size: 28px; }
+    .heart:nth-child(4) { left: 60%; animation-delay: 1s; color: #c47070; font-size: 20px; }
+    .heart:nth-child(5) { left: 75%; animation-delay: 3s; color: #d08080; }
+    .heart:nth-child(6) { left: 90%; animation-delay: 5s; color: #b85555; font-size: 22px; }
+    .heart:nth-child(7) { left: 15%; animation-delay: 6s; color: #c47070; font-size: 26px; }
+    .heart:nth-child(8) { left: 85%; animation-delay: 7s; color: #d08080; font-size: 19px; }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(143,168,138,0.25) 0%, rgba(163,194,150,0.15) 100%);
+      border: 1.5px solid rgba(143,168,138,0.4);
+      border-radius: 50px;
+      padding: 8px 24px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage-dark);
+      margin-bottom: 24px;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 700;
       color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.1;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
     }
-    .message p {
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .version {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.2rem, 4vw, 2rem);
+      color: var(--sage-dark);
+      margin-bottom: 32px;
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+
+    .ultrasound-container {
+      max-width: 500px;
+      margin: 0 auto 32px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(143,168,138,0.2);
+      animation: scaleIn 1s ease-out 0.6s both;
+      position: relative;
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .ultrasound-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #0a0a0a;
+    }
+
+    .glow-effect {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(143,168,138,0.15) 0%, transparent 70%);
+      pointer-events: none;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .release-date {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      font-weight: 600;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.8s ease-out 0.8s both;
+    }
+
+    .release-date span {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      font-size: 1.15em;
+    }
+
+    .subtitle {
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
       color: var(--text-light);
-      font-size: 0.95rem;
-      line-height: 1.7;
+      margin-bottom: 48px;
+      line-height: 1.6;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 0.8s ease-out 1s both;
     }
 
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 50px 20px 40px;
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #7a9a6e 0%, #5e8050 100%);
+      color: #fff;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
+      font-weight: 600;
+      padding: 18px 48px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(90,128,80,0.4);
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.8s ease-out 1.2s both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(90,128,80,0.5);
+    }
+
+    .cta-button:hover::before {
+      opacity: 1;
+    }
+
+    .cta-button:active {
+      transform: translateY(-1px);
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: fixed;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: sparkle 2s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .sparkle:nth-child(odd) {
+      animation-delay: 0.5s;
+    }
+
+    /* Made with love footer */
+    .footer {
+      margin-top: 60px;
+      font-size: 0.85rem;
       color: var(--text-light);
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(143,168,138,0.12);
-      margin-top: 20px;
+      opacity: 0.7;
+      animation: fadeIn 1s ease-out 1.5s both;
     }
 
-    /* ADMIN TOGGLE */
-    .admin-bar {
-      display: none;
-      background: rgba(180,150,60,0.15);
-      padding: 10px 20px;
-      text-align: center;
-      font-size: 0.85rem;
-      border-bottom: 1px solid rgba(180,150,60,0.25);
-      color: var(--accent);
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 0.7; }
     }
-    .admin-bar.active { display: block; }
-    .admin-bar button {
-      margin-left: 10px;
-      padding: 4px 14px;
-      border: 1px solid rgba(180,150,60,0.4);
-      border-radius: 6px;
-      background: rgba(255,255,255,0.08);
-      color: var(--text);
-      cursor: pointer;
-      font-size: 0.82rem;
-    }
-    .admin-bar button:hover { background: rgba(255,255,255,0.14); }
 
+    /* Mobile responsive */
     @media (max-width: 600px) {
-      .hero h1 { font-size: 2.8rem; }
-      .hero .names { font-size: 1.1rem; }
-      .registry { grid-template-columns: 1fr; padding: 0 16px; }
+      .container {
+        padding: 20px 15px;
+      }
+
+      .badge {
+        font-size: 0.65rem;
+        padding: 6px 18px;
+      }
+
+      .ultrasound-container {
+        max-width: 100%;
+        border-radius: 15px;
+      }
+
+      .cta-button {
+        padding: 16px 40px;
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .heart {
+        font-size: 18px;
+      }
+
+      .heart:nth-child(3) { font-size: 22px; }
+      .heart:nth-child(7) { font-size: 20px; }
     }
   </style>
 </head>
 <body>
+  <!-- Floating hearts -->
+  <div class="heart">💗</div>
+  <div class="heart">💕</div>
+  <div class="heart">💖</div>
+  <div class="heart">💗</div>
+  <div class="heart">💕</div>
+  <div class="heart">💖</div>
+  <div class="heart">💗</div>
+  <div class="heart">💕</div>
 
-<!-- ADMIN BAR (visible when ?admin in URL) -->
-<div class="admin-bar" id="adminBar">
-  Admin Mode — <button onclick="resetAllClaims()">Reset All Claims</button>
-  <button onclick="exportData()">Export Data</button>
-</div>
+  <!-- Sparkles -->
+  <div class="sparkle" style="top: 15%; left: 12%;"></div>
+  <div class="sparkle" style="top: 25%; left: 88%;"></div>
+  <div class="sparkle" style="top: 65%; left: 8%;"></div>
+  <div class="sparkle" style="top: 75%; left: 92%;"></div>
+  <div class="sparkle" style="top: 45%; left: 5%;"></div>
+  <div class="sparkle" style="top: 55%; left: 95%;"></div>
 
-<header class="hero">
-  <!-- Hand-drawn hearts left side -->
-  <div class="hearts-left">
-    <svg width="45" height="42" viewBox="0 0 45 42" style="top:18%;left:10px" fill="none">
-      <path d="M22 38C22 38 3 28 3 14C3 7 8 2 14 2C18 2 21 5 22 8C23 5 26 2 30 2C36 2 41 7 41 14C41 28 22 38 22 38Z" stroke="#b85555" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" style="filter:url(#pencil1)"/>
-    </svg>
-    <svg width="32" height="30" viewBox="0 0 45 42" style="top:48%;left:50px" fill="none">
-      <path d="M22 38C22 38 3 28 3 14C3 7 8 2 14 2C18 2 21 5 22 8C23 5 26 2 30 2C36 2 41 7 41 14C41 28 22 38 22 38Z" stroke="#c47070" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" style="filter:url(#pencil2)"/>
-    </svg>
-    <svg width="24" height="22" viewBox="0 0 45 42" style="top:75%;left:20px" fill="none">
-      <path d="M22 38C22 38 3 28 3 14C3 7 8 2 14 2C18 2 21 5 22 8C23 5 26 2 30 2C36 2 41 7 41 14C41 28 22 38 22 38Z" stroke="#b85555" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" style="filter:url(#pencil1)"/>
-    </svg>
-    <svg width="18" height="17" viewBox="0 0 45 42" style="top:35%;left:70px" fill="none">
-      <path d="M22 38C22 38 3 28 3 14C3 7 8 2 14 2C18 2 21 5 22 8C23 5 26 2 30 2C36 2 41 7 41 14C41 28 22 38 22 38Z" stroke="#d08080" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" style="filter:url(#pencil2)"/>
-    </svg>
-  </div>
+  <div class="container">
+    <div class="badge">Coming Soon</div>
 
-  <!-- Hand-drawn hearts right side -->
-  <div class="hearts-right">
-    <svg width="38" height="35" viewBox="0 0 45 42" style="top:25%;right:15px" fill="none">
-      <path d="M22 38C22 38 3 28 3 14C3 7 8 2 14 2C18 2 21 5 22 8C23 5 26 2 30 2C36 2 41 7 41 14C41 28 22 38 22 38Z" stroke="#c47070" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" style="filter:url(#pencil1)"/>
-    </svg>
-    <svg width="22" height="20" viewBox="0 0 45 42" style="top:55%;right:60px" fill="none">
-      <path d="M22 38C22 38 3 28 3 14C3 7 8 2 14 2C18 2 21 5 22 8C23 5 26 2 30 2C36 2 41 7 41 14C41 28 22 38 22 38Z" stroke="#b85555" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" style="filter:url(#pencil1)"/>
-    </svg>
-    <svg width="28" height="26" viewBox="0 0 45 42" style="top:72%;right:20px" fill="none">
-      <path d="M22 38C22 38 3 28 3 14C3 7 8 2 14 2C18 2 21 5 22 8C23 5 26 2 30 2C36 2 41 7 41 14C41 28 22 38 22 38Z" stroke="#d08080" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" style="filter:url(#pencil2)"/>
-    </svg>
-    <svg width="16" height="15" viewBox="0 0 45 42" style="top:12%;right:55px" fill="none">
-      <path d="M22 38C22 38 3 28 3 14C3 7 8 2 14 2C18 2 21 5 22 8C23 5 26 2 30 2C36 2 41 7 41 14C41 28 22 38 22 38Z" stroke="#b85555" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none" style="filter:url(#pencil2)"/>
-    </svg>
-  </div>
+    <h1>Peanut</h1>
+    <div class="version">The Next Generation</div>
 
-  <!-- SVG filters for hand-drawn pencil look -->
-  <svg width="0" height="0" style="position:absolute">
-    <defs>
-      <filter id="pencil1">
-        <feTurbulence type="turbulence" baseFrequency="0.04" numOctaves="4" result="noise" seed="1"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-      <filter id="pencil2">
-        <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="3" result="noise" seed="7"/>
-        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
-      </filter>
-    </defs>
-  </svg>
+    <div class="ultrasound-container">
+      <img src="peanut-2.0.png" alt="Ultrasound of Baby Peanut">
+      <div class="glow-effect"></div>
+    </div>
 
-  <p class="names">Peixin & Ryan's</p>
-  <h1>Baby Registry</h1>
-  <p class="subtitle">for Little Peanut</p>
+    <div class="release-date">
+      🎯 Target Release Date: <span>May 2, 2026</span>
+    </div>
 
-  <!-- Cute horizontal peanut SVG -->
-  <div class="peanut-img">
-    <svg width="160" height="90" viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Peanut body - horizontal: left lobe, right lobe, pinched middle -->
-      <ellipse cx="48" cy="45" rx="42" ry="32" fill="#e8c97a" stroke="#c9a84c" stroke-width="2"/>
-      <ellipse cx="112" cy="45" rx="42" ry="34" fill="#e8c97a" stroke="#c9a84c" stroke-width="2"/>
-      <!-- Middle overlap fill to blend the two lobes -->
-      <ellipse cx="80" cy="45" rx="18" ry="24" fill="#e8c97a"/>
-      <!-- Waist pinch lines (top and bottom) -->
-      <path d="M72 15 C76 22, 84 22, 88 15" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <path d="M72 75 C76 68, 84 68, 88 75" stroke="#c9a84c" stroke-width="2" fill="none" stroke-linecap="round"/>
-      <path d="M70 13 C75 20, 85 20, 90 13" stroke="#c9a84c" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
-      <path d="M70 77 C75 70, 85 70, 90 77" stroke="#c9a84c" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
-      <!-- Texture lines on left lobe -->
-      <path d="M22 30 C28 35, 28 55, 22 60" stroke="#d4b05e" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.4"/>
-      <path d="M35 22 C40 30, 40 60, 35 68" stroke="#d4b05e" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/>
-      <!-- Texture lines on right lobe -->
-      <path d="M138 30 C132 35, 132 55, 138 60" stroke="#d4b05e" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.4"/>
-      <path d="M125 22 C120 30, 120 60, 125 68" stroke="#d4b05e" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/>
-      <!-- Face on right lobe - eyes -->
-      <ellipse cx="100" cy="39" rx="3.5" ry="4" fill="#5a4a2a"/>
-      <ellipse cx="120" cy="39" rx="3.5" ry="4" fill="#5a4a2a"/>
-      <!-- Eye shine -->
-      <ellipse cx="101.5" cy="37.5" rx="1.3" ry="1.5" fill="white"/>
-      <ellipse cx="121.5" cy="37.5" rx="1.3" ry="1.5" fill="white"/>
-      <!-- Rosy cheeks -->
-      <ellipse cx="95" cy="48" rx="5" ry="3.5" fill="#f0a0a0" opacity="0.45"/>
-      <ellipse cx="127" cy="48" rx="5" ry="3.5" fill="#f0a0a0" opacity="0.45"/>
-      <!-- Smile -->
-      <path d="M104 52 C107 57, 114 57, 117 52" stroke="#5a4a2a" stroke-width="2" fill="none" stroke-linecap="round"/>
-    </svg>
-  </div>
-</header>
+    <p class="subtitle">
+      After months of development, we're excited to announce our most ambitious project yet.
+      Registry now open.
+    </p>
 
-<div class="message">
-  <h2>Thank you for your love and support!</h2>
-  <p>We're so grateful to have you in our lives. If you'd like to gift something, here are some things we'd love for our little one. Just hit "Claim & Buy" to reserve your gift — you'll get our shipping address and a link to purchase. No pressure at all!</p>
-</div>
+    <a href="registry.html" class="cta-button">
+      Click Here to Continue to Registry
+    </a>
 
-<div class="filters">
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="essentials">Essentials</button>
-  <button class="filter-btn" data-filter="gear">Gear</button>
-</div>
-
-<div class="progress-section">
-  <span class="progress-text" id="progressText">0 of 0 items claimed</span>
-  <div class="progress-bar-bg">
-    <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
-  </div>
-</div>
-
-<div class="registry" id="registry"></div>
-
-<footer>Made with love for our little one 💛</footer>
-
-<!-- CLAIM MODAL -->
-<div class="modal-overlay" id="modal">
-  <div class="modal">
-    <h2>Claim this gift</h2>
-    <p id="modalItem"></p>
-    <label for="claimName">Your name</label>
-    <input type="text" id="claimName" placeholder="e.g. Aunt Sarah" autofocus>
-    <div class="modal-btns">
-      <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-claim" onclick="confirmClaim()">Claim It</button>
+    <div class="footer">
+      Made with love by Peixin & Ryan
     </div>
   </div>
-</div>
 
-<!-- SUCCESS MODAL (shipping address) -->
-<div class="modal-overlay" id="successModal">
-  <div class="modal success-modal">
-    <h2>Thank you!</h2>
-    <p id="successItemName"></p>
-    <div class="address-box">
-      <label>Ship to:</label>
-      <div class="address-text" id="addressText">
-        519 Raymond Ave, Apt 6<br>
-        Santa Monica, CA 90405
-      </div>
-      <button class="btn btn-copy" id="copyBtn" onclick="copyAddress()">Copy Address</button>
-    </div>
-    <a class="btn btn-claim" id="successShopLink" href="#" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none;margin-top:12px;">Shop Now</a>
-    <button class="btn btn-cancel" onclick="closeSuccessModal()" style="margin-top:8px;">Close</button>
-  </div>
-</div>
-
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
-
-<script>
-  // =====================================================================
-  //  REGISTRY DATA — Edit this array to customize your registry!
-  // =====================================================================
-  const registryItems = [
-    {
-      id: 1,
-      name: "Diapers (Size 1)",
-      detail: "You can never have too many!",
-      category: "essentials",
-      price: "$105",
-      img: "https://healthybaby.com/cdn/shop/files/Subscription-PDP-Carousel-3.jpg?v=1769546955",
-      link: "https://www.amazon.com/dp/B0GFXCRB12?th=1"
-    },
-    {
-      id: 2,
-      name: "Diapers (Size 2)",
-      detail: "You can never have too many!",
-      category: "essentials",
-      price: "$105",
-      img: "https://healthybaby.com/cdn/shop/files/Subscription-PDP-Carousel-3.jpg?v=1769546955",
-      link: "https://healthybaby.com/products/our-diaper?variant=40732779020337"
-    },
-    {
-      id: 20,
-      name: "Wipe Warmer and Dispenser",
-      detail: "Keeps wipes warm and ready for changes.",
-      category: "essentials",
-      price: "$29.99",
-      img: "https://www.hiccapop.com/cdn/shop/files/HP_WWCL_MLP_081425_54513059-49fe-451f-92ca-ec4ce3f62198.png?v=1759432051",
-      link: "https://www.amazon.com/Warmer-Wipes-Dispenser-Holder-Changing/dp/B01LZJVSTE"
-    },
-    {
-      id: 3,
-      name: "Lansinoh Baby Bottles — Size S",
-      detail: "Glass bottles, 5oz, 4-pack.",
-      category: "essentials",
-      price: "$24.92",
-      img: "https://lansinoh.com/cdn/shop/files/5oz_4_ct_grande.png?v=1769541985",
-      link: "https://www.amazon.com/dp/B0F4T44CY3"
-    },
-    {
-      id: 33,
-      name: "Lansinoh Baby Bottles — Size XS",
-      detail: "Anti-colic design to reduce air intake. Great for breastfed babies.",
-      category: "essentials",
-      price: "$27.99",
-      img: "https://m.media-amazon.com/images/I/712P01egbTL._SL1500_.jpg",
-      link: "https://www.amazon.com/dp/B0FLZNBGH9"
-    },
-    {
-      id: 5,
-      name: "Silver Cross Reef 2 Stroller",
-      detail: "Color: Espresso. Foldable stroller.",
-      category: "gear",
-      price: "$1,099",
-      img: "https://www.swaddlesbaby.com/cdn/shop/files/reef-bassinet-accessory-bundle-espresso_e1c0fa2b-068f-421e-b340-7bc33d661c77_grande.png?v=1771499271",
-      link: "https://silvercrossus.com/product/silver-cross-reef-2-foldable-stroller/"
-    },
-    {
-      id: 6,
-      name: "Nuna PIPA RX Infant Car Seat with RELX Base",
-      detail: "Color: Pine. Infant car seat, rear-facing.",
-      category: "gear",
-      price: "$550",
-      img: "https://nunababy.com/media/catalog/product/N/u/Nuna_PIPArx_2025_Pine_Angle_US_web_aa0e.png?optimize=high&fit=bounds&height=730&width=730&canvas=730:730&format=jpeg",
-      link: "https://nunababy.com/usa/pipa-rx-infant-car-seat-with-relx-base?color_ref=16729"
-    },
-    {
-      id: 22,
-      name: "Comfy Cubs Muslin Burp Cloths",
-      detail: "Large 20x10\", 6-layer, ultra absorbent 100% cotton. Pack of 6. Grab 2 packs!",
-      category: "essentials",
-      price: "$21.24",
-      maxClaims: 2,
-      img: "https://comfycubs.com/cdn/shop/files/16PKelpMBC2000X2000_2f0f2aec-539f-492f-aa0a-7a438b3a8961_grande.png?v=1717510738",
-      link: "https://www.amazon.com/dp/B0B77YPC9H"
-    },
-    {
-      id: 23,
-      name: "Boon Trove Silicone Breast Pump Set",
-      detail: "Hands-free milk collector, 2 count with travel pouch.",
-      category: "essentials",
-      price: "$21.59",
-      img: "https://cdn11.bigcommerce.com/s-bo5kvbk80m/images/stencil/1280x1280/products/4174/21603/g0rvfp6gwi4colrn11qh__12266.1747154783.jpg?c=1",
-      link: "https://www.amazon.com/dp/B0C5YKZDDJ"
-    },
-    {
-      id: 24,
-      name: "Frida Baby Electric Nail Buffer",
-      detail: "Safe electric nail file with 4 buffer pads, LED light, and storage case.",
-      category: "essentials",
-      price: "$31.99",
-      img: "https://cdn.shopify.com/s/files/1/0162/3257/9120/products/ElectricNailTrimmer_1.jpg?v=1679595761",
-      link: "https://www.amazon.com/dp/B0BV4SXTFZ"
-    },
-    {
-      id: 25,
-      name: "Alpine Muffy Baby Ear Protection",
-      detail: "Sage Green. Hearing protection for babies 3-48 months, 24dB noise reduction.",
-      category: "gear",
-      price: "$36.95",
-      img: "https://www.alpinehearingprotection.com/cdn/shop/files/alpine-muffy-baby-product-image-sage-green.jpg?v=1768905283",
-      link: "https://www.amazon.com/dp/B0D33949HD?th=1"
-    },
-    {
-      id: 26,
-      name: "Frida Mom 2-in-1 Postpartum Pads",
-      detail: "Instant ice maxi pads — cold therapy and absorbent pad in one.",
-      category: "essentials",
-      price: "$13.59",
-      img: "https://frida.com/cdn/shop/files/100000149.jpg?v=1720804946",
-      link: "https://www.amazon.com/dp/B07THDP4KZ"
-    },
-    {
-      id: 27,
-      name: "Frida Mom Postpartum Underwear (8-pack)",
-      detail: "Disposable boyshort panties with seamless stretch support. Get 2 packs!",
-      category: "essentials",
-      price: "$8.89",
-      maxClaims: 2,
-      img: "https://frida.com/cdn/shop/files/FM_Postpartum_Underwear_thumbnail_Boyshorts_1_2.jpg?v=1730731309",
-      link: "https://www.amazon.com/dp/B07THS54DF"
-    },
-    {
-      id: 28,
-      name: "Kudos Skin-Loving Baby Wipes",
-      detail: "Plastic-free, unscented, 60ct. Grab 2 packs!",
-      category: "essentials",
-      price: "$33.94",
-      maxClaims: 2,
-      img: "https://mykudos.com/cdn/shop/files/RevKudos_Wipes_Updated_2026_c722792e-40d1-4e25-be57-3607478f6d7c.png?v=1769190299",
-      link: "https://www.amazon.com/dp/B0GMDZ8N6K"
-    },
-    {
-      id: 29,
-      name: "Keekaroo Peanut Changer",
-      detail: "Wipeable diaper changing pad — no covers needed. Made in USA.",
-      category: "essentials",
-      price: "$149.95",
-      img: "https://www.keekaroo.com/media/catalog/product/cache/f8aaf5ce41bbfeeb5322cbd1c3f019bc/k/r/kr_grey_with_baby.png",
-      link: "https://www.amazon.com/dp/B00KSW970Y"
-    },
-    {
-      id: 30,
-      name: "Skip Hop Moby Smart Sling 3-Stage Tub",
-      detail: "Whale-shaped baby bathtub that grows with baby through 3 stages. Grey.",
-      category: "essentials",
-      price: "$39.99",
-      img: "https://cdn.shopify.com/s/files/1/0325/7932/1915/files/skip-hop-moby-smart-sling-3-stage-tub-grey_image_1.jpg?v=1769342278",
-      link: "https://www.amazon.com/dp/B07FK7BG98"
-    },
-    {
-      id: 34,
-      name: "2-Pack Organic Bassinet Sheets",
-      detail: "Soft organic cotton fitted sheets for bassinet mattress.",
-      category: "essentials",
-      price: "$16.96",
-      img: "https://m.media-amazon.com/images/I/81XuaRR2v-L._AC_SL1500_.jpg",
-      link: "https://www.amazon.com/dp/B0CV9MGKKR"
-    },
-    {
-      id: 35,
-      name: "Coyuchi Unisex Organic Waffle Robe",
-      detail: "Long bathrobe, 100% organic cotton, undyed. Size XS-S.",
-      category: "for mom",
-      price: "$98",
-      img: "https://m.media-amazon.com/images/I/51rE2aCgoNL._AC_SL1500_.jpg",
-      link: "https://www.amazon.com/dp/B0CYT3FZ3Y"
-    },
-    {
-      id: 36,
-      name: "BlueSnail Quilted Waterproof Changing Pad Liners",
-      detail: "Thicker quilted waterproof liners for changing pad protection.",
-      category: "essentials",
-      price: "$15.15",
-      img: "https://m.media-amazon.com/images/I/51tWMT3Sr4L._SL1200_.jpg",
-      link: "https://www.amazon.com/dp/B075ZMCBLG"
-    },
-    {
-      id: 37,
-      name: "Dr. Noze Best NozeBot Electric Baby Nasal Aspirator",
-      detail: "Hospital-grade suction nasal aspirator for congested babies.",
-      category: "essentials",
-      price: "$119.97",
-      img: "https://m.media-amazon.com/images/I/71hu6pLRrlL._AC_SL1500_.jpg",
-      link: "https://www.amazon.com/dp/B08G6SZ2LT"
-    },
-    {
-      id: 38,
-      name: "Dr. Noze Best Newborn Nozepiece",
-      detail: "Newborn-sized tip accessory for the NozeBot aspirator.",
-      category: "essentials",
-      price: "$9.97",
-      img: "https://m.media-amazon.com/images/I/61d78J+M2BL._AC_SL1500_.jpg",
-      link: "https://www.amazon.com/dp/B0CV62RGY2"
-    },
-    {
-      id: 39,
-      name: "Bibs Pacifiers Color Collection",
-      detail: "Natural rubber pacifiers in soft colors. BPA-free.",
-      category: "essentials",
-      price: "$15.95",
-      img: "https://m.media-amazon.com/images/I/71LPnU4os5L._AC_SX569_.jpg",
-      link: "https://www.amazon.com/dp/B09SFKYQ24"
-    },
-    {
-      id: 40,
-      name: "Love to Dream Swaddle UP — Tan Houndstooth",
-      detail: "Arms-up swaddle for self-soothing. Ideal for newborns.",
-      category: "essentials",
-      price: "$34.95",
-      img: "https://m.media-amazon.com/images/I/713MTuxkKFL._SL1500_.jpg",
-      link: "https://www.amazon.com/dp/B0FNQQ4WF4"
-    },
-    {
-      id: 41,
-      name: "Love to Dream Swaddle UP Cream",
-      detail: "Arms-up swaddle in cream. For self-soothing newborns.",
-      category: "essentials",
-      price: "$37.95",
-      img: "https://m.media-amazon.com/images/I/41RCKrzKpAL._SL1228_.jpg",
-      link: "https://www.amazon.com/dp/B0088HVGHS"
-    },
-    {
-      id: 32,
-      name: "Pro Goleem Baby Bassinet Mattress Pad",
-      detail: "30\"x18\" bassinet mattress pad with firm side for safe sleep.",
-      category: "essentials",
-      price: "$56.99",
-      img: "https://m.media-amazon.com/images/I/819VmI8GRWL._SL1500_.jpg",
-      link: "https://www.amazon.com/dp/B0DRJ4MFZ1"
-    },
-    {
-      id: 31,
-      name: "Amazon Gift Card ($50)",
-      detail: "For anything we still need! We'll put it to good use.",
-      category: "essentials",
-      price: "$50",
-      maxClaims: 20,
-      img: "https://m.media-amazon.com/images/I/31x451MtRuL._SX522_.jpg",
-      link: "https://www.amazon.com/Amazon-eGift-Card-Logo-Animated/dp/B07PCMWTSG?th=1"
-    },
-    {
-      id: 99,
-      name: "Tesla Cybertruck",
-      detail: "For the little one's first commute. Every baby needs one.",
-      category: "gear",
-      price: "$59,990",
-      claimed: true,
-      img: "https://hips.hearstapps.com/hmg-prod/images/2024-tesla-cybertruck-pr-101-688d35ae96e4c.jpg?resize=768:*",
-      link: "https://www.tesla.com/cybertruck/design"
-    },
-  ];
-
-  // =====================================================================
-  //  FIREBASE + STATE
-  // =====================================================================
-  firebase.initializeApp({
-    apiKey: "AIzaSyD8coAf5-gGXdJyCQZIemYMJd0SLV4bR1s",
-    authDomain: "baby-registry-7b266.firebaseapp.com",
-    databaseURL: "https://baby-registry-7b266-default-rtdb.firebaseio.com",
-    projectId: "baby-registry-7b266",
-    storageBucket: "baby-registry-7b266.firebasestorage.app",
-    messagingSenderId: "359670051512",
-    appId: "1:359670051512:web:69ff5b38dc902495c07a4d"
-  });
-  const db = firebase.database();
-  const claimsRef = db.ref("claims");
-
-  const STORAGE_KEY = "babyshower_claims";
-  let claims = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-  let currentClaimId = null;
-  let activeFilter = "all";
-
-  // Real-time listener — syncs claims across all devices
-  claimsRef.on("value", snapshot => {
-    claims = snapshot.val() || {};
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(claims));
-    render();
-  });
-
-  // Admin mode
-  if (location.search.includes("admin")) {
-    document.getElementById("adminBar").classList.add("active");
-  }
-
-  // =====================================================================
-  //  RENDER
-  // =====================================================================
-  function render() {
-    const grid = document.getElementById("registry");
-    grid.innerHTML = "";
-
-    const filtered = activeFilter === "all"
-      ? registryItems
-      : registryItems.filter(i => i.category === activeFilter);
-
-    filtered.forEach(item => {
-      const max = item.maxClaims || 1;
-      const claimData = claims[item.id];
-      const claimList = Array.isArray(claimData) ? claimData : (claimData ? [claimData] : []);
-      const claimCount = claimList.length;
-      const isFull = item.claimed || claimCount >= max;
-
-      const card = document.createElement("div");
-      card.className = "card" + (isFull ? " claimed" : "");
-
-      let btnHtml;
-      if (isFull) {
-        btnHtml = max > 1
-          ? `<button class="btn btn-claimed">${max} of ${max} claimed</button>`
-          : `<button class="btn btn-claimed">Claimed</button>`;
-      } else if (max > 1) {
-        btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">${claimCount} of ${max} claimed — Claim & Buy</button>`;
-      } else {
-        btnHtml = `<button class="btn btn-claim" onclick="openModal(${item.id})">Claim & Buy</button>`;
-      }
-
-      card.innerHTML = `
-        <div class="card-img">${item.img ? `<img src="${item.img}" alt="${item.name}" loading="lazy">` : (item.emoji || '')}</div>
-        <div class="card-body">
-          <div class="card-category">${item.category}</div>
-          <div class="card-title">${item.name}</div>
-          <div class="card-detail">${item.detail}</div>
-          ${item.price ? `<div class="card-price">${item.price}</div>` : ""}
-          ${item.link ? `<a class="card-link" href="${item.link}" target="_blank" rel="noopener">View in store &rarr;</a>` : ""}
-          ${btnHtml}
-        </div>
-      `;
-      grid.appendChild(card);
+  <script>
+    // Add subtle parallax effect to ultrasound on mouse move
+    document.addEventListener('mousemove', (e) => {
+      const container = document.querySelector('.ultrasound-container');
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 20;
+      const y = (e.clientY / innerHeight - 0.5) * 20;
+      container.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg)`;
     });
 
-    updateProgress();
-  }
-
-  function updateProgress() {
-    let total = 0, claimed = 0;
-    registryItems.forEach(item => {
-      if (item.claimed) { total++; claimed++; return; }
-      const max = item.maxClaims || 1;
-      total += max;
-      const claimData = claims[item.id];
-      const claimList = Array.isArray(claimData) ? claimData : (claimData ? [claimData] : []);
-      claimed += Math.min(claimList.length, max);
+    // Reset on mouse leave
+    document.addEventListener('mouseleave', () => {
+      const container = document.querySelector('.ultrasound-container');
+      container.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)';
     });
-    document.getElementById("progressText").textContent = `${claimed} of ${total} items claimed`;
-    document.getElementById("progressFill").style.width = `${(claimed / total) * 100}%`;
-  }
 
-  // =====================================================================
-  //  FILTERS
-  // =====================================================================
-  document.querySelectorAll(".filter-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      activeFilter = btn.dataset.filter;
-      render();
+    // Create random sparkles on button hover
+    const button = document.querySelector('.cta-button');
+    let sparkleInterval;
+
+    button.addEventListener('mouseenter', () => {
+      sparkleInterval = setInterval(() => {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.style.left = `${button.offsetLeft + Math.random() * button.offsetWidth}px`;
+        sparkle.style.top = `${button.offsetTop + Math.random() * button.offsetHeight}px`;
+        document.body.appendChild(sparkle);
+
+        setTimeout(() => sparkle.remove(), 2000);
+      }, 200);
     });
-  });
 
-  // =====================================================================
-  //  MODAL
-  // =====================================================================
-  function openModal(id) {
-    currentClaimId = id;
-    const item = registryItems.find(i => i.id === id);
-    document.getElementById("modalItem").textContent = item.name;
-    document.getElementById("claimName").value = "";
-    document.getElementById("modal").classList.add("active");
-    setTimeout(() => document.getElementById("claimName").focus(), 100);
-  }
-
-  function closeModal() {
-    document.getElementById("modal").classList.remove("active");
-    currentClaimId = null;
-  }
-
-  function confirmClaim() {
-    const name = document.getElementById("claimName").value.trim();
-    if (!name) {
-      document.getElementById("claimName").style.borderColor = "#e74c3c";
-      return;
-    }
-    const item = registryItems.find(i => i.id === currentClaimId);
-    const max = item.maxClaims || 1;
-    if (max > 1) {
-      const existing = Array.isArray(claims[currentClaimId]) ? claims[currentClaimId] : (claims[currentClaimId] ? [claims[currentClaimId]] : []);
-      existing.push(name);
-      claims[currentClaimId] = existing;
-    } else {
-      claims[currentClaimId] = name;
-    }
-    claimsRef.set(claims);
-    closeModal();
-
-    // Show success modal with shipping address
-    showSuccessModal(item);
-
-    // Send email notification
-    fetch("https://formsubmit.co/ajax/rycole12@gmail.com", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({
-        _subject: "Baby Registry: " + item.name + " was claimed!",
-        item: item.name,
-        "claimed by": name,
-        _template: "table"
-      })
-    }).catch(() => {});
-  }
-
-  function showSuccessModal(item) {
-    document.getElementById("successItemName").textContent = "You claimed: " + item.name;
-    const shopLink = document.getElementById("successShopLink");
-    if (item.link) {
-      shopLink.href = item.link;
-      shopLink.style.display = "block";
-    } else {
-      shopLink.style.display = "none";
-    }
-    document.getElementById("copyBtn").textContent = "Copy Address";
-    document.getElementById("copyBtn").classList.remove("copied");
-    document.getElementById("successModal").classList.add("active");
-  }
-
-  function closeSuccessModal() {
-    document.getElementById("successModal").classList.remove("active");
-  }
-
-  function copyAddress() {
-    const address = "519 Raymond Ave, Apt 6\nSanta Monica, CA 90405";
-    navigator.clipboard.writeText(address).then(() => {
-      const btn = document.getElementById("copyBtn");
-      btn.textContent = "Copied!";
-      btn.classList.add("copied");
+    button.addEventListener('mouseleave', () => {
+      clearInterval(sparkleInterval);
     });
-  }
-
-  // Close modals on overlay click
-  document.getElementById("modal").addEventListener("click", e => {
-    if (e.target === e.currentTarget) closeModal();
-  });
-  document.getElementById("successModal").addEventListener("click", e => {
-    if (e.target === e.currentTarget) closeSuccessModal();
-  });
-
-  // Close modals on Escape
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") { closeModal(); closeSuccessModal(); }
-    if (e.key === "Enter" && document.getElementById("modal").classList.contains("active")) confirmClaim();
-  });
-
-  // =====================================================================
-  //  ADMIN
-  // =====================================================================
-  function resetAllClaims() {
-    if (confirm("Reset all claims? This cannot be undone.")) {
-      claims = {};
-      claimsRef.set(null);
-      localStorage.removeItem(STORAGE_KEY);
-      render();
-    }
-  }
-
-  function exportData() {
-    const data = registryItems.map(item => ({
-      name: item.name,
-      claimedBy: claims[item.id] || null
-    }));
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "registry-claims.json";
-    a.click();
-  }
-
-  // =====================================================================
-  //  INIT
-  // =====================================================================
-  render();
-</script>
-
+  </script>
 </body>
 </html>
